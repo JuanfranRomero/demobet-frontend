@@ -1,7 +1,11 @@
-<div class="login-card">
-    <mat-card appearance="outlined">
-        <mat-card-content>
+<div class="login-main-div">
 
+    <div class="login-title">
+      Log in to demobet
+    </div>
+
+    <mat-card appearance="outlined" class="login-card">
+        <mat-card-content>
             <form [formGroup]="loginFormGroup" (submit)="login()">
                 <p>
                   <mat-form-field>
@@ -23,11 +27,18 @@
                 <p class="login-button-align">
                     <button mat-flat-button type="submit" [disabled]="loading" class="login-button">
                         <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
-                        <span *ngIf="!loading">Login</span>
+                        <span *ngIf="!loading">Log in</span>
                     </button>
                 </p>
             </form>
-
         </mat-card-content>
     </mat-card>
+
+    <mat-card appearance="outlined" class="signup-card">
+      <mat-card-content class="signup-card-content"> 
+        <p>Don't have a demobet account yet?</p>
+        <a href="signup">Sign up</a>
+      </mat-card-content>
+    </mat-card>
+
 </div>

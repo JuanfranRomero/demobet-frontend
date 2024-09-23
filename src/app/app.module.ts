@@ -19,15 +19,19 @@ import { JwtInterceptor } from './interceptor/jwt-interceptor';
 import { UserService } from './service/user.service';
 import { ResponseErrorInterceptor } from './interceptor/response-error.interceptor';
 import { SnackBarService } from './service/snackbar.service';
-import { LoginComponent } from './component/page/login/login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { LoginComponent } from './component/page/login/login.component';
+import { SignupComponent } from './component/page/signup/signup.component';
+import { HomeComponent } from './component/page/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginDialog,
-    LoginComponent
+    LoginComponent,
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

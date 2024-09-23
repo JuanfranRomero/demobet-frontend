@@ -1,9 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../../../service/authentication.service';
-import { UserService } from '../../../../service/user.service';
-import { LoginRequest } from '../../../../model/login-request.model';
-import { catchError } from 'rxjs';
+import { AuthenticationService } from '../../../service/authentication.service';
+import { UserService } from '../../../service/user.service';
+import { LoginRequest } from '../../../model/login-request.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('access_token', JSON.stringify(response.token));
         this.userService.authenticatedUser();
         this.loading = false;
+        this.router.navigate(['/home']);
       }
     },
     (error) => {
@@ -65,7 +67,6 @@ export class LoginComponent implements OnInit {
 
   public clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
-    event.stopPropagation();
   }
 
 }
