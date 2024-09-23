@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Log in</h2>
+<mat-dialog-content>
+  <form [formGroup]="loginFormGroup">
+    <p>
+      <mat-form-field>
+        <mat-label>Your username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <mat-label>Your password</mat-label>
+        <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+        <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()">
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="submit" (click)="login()" [disabled]="loginFormGroup.invalid">Log in</button>
+</mat-dialog-actions>

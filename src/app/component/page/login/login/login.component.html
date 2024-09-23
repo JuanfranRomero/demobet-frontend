@@ -1,0 +1,33 @@
+<div class="login-card">
+    <mat-card appearance="outlined">
+        <mat-card-content>
+
+            <form [formGroup]="loginFormGroup" (submit)="login()">
+                <p>
+                  <mat-form-field>
+                    <mat-label>Your username</mat-label>
+                    <input matInput formControlName="username">
+                  </mat-form-field>
+                </p>
+                <p>
+                  <mat-form-field>
+                    <mat-label>Your password</mat-label>
+                    <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+                    <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide()">
+                      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </p>
+
+                <p class="login-button-align">
+                    <button mat-flat-button type="submit" [disabled]="loading" class="login-button">
+                        <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
+                        <span *ngIf="!loading">Login</span>
+                    </button>
+                </p>
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+</div>
