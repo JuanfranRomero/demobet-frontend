@@ -24,6 +24,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { LoginComponent } from './component/page/login/login.component';
 import { SignupComponent } from './component/page/signup/signup.component';
 import { HomeComponent } from './component/page/home/home.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HomeComponent } from './component/page/home/home.component';
     MatCardModule,
     // Grid
     MatGridListModule,
+    DragDropModule,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
