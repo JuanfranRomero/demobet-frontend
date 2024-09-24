@@ -38,19 +38,17 @@ th {
 }
 
 .example-box {
-    width: 40px;
-    height: 40px;
-    border: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
+    width: 50px;
+    height: 50px;
+    border: solid 2px #000000;
+    color: white;
+    font-weight: bold;
     cursor: move;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: yellow;
     border-radius: 100px;
-    margin-right: 25px;
-    margin-top: 25px;
     position: relative;
     z-index: 999;
     box-sizing: border-box;
@@ -66,9 +64,34 @@ th {
                 0 8px 10px 1px rgba(0, 0, 0, 0.14),
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
-  
-.example-boundary {
-    width: 810px;
-    height: 285px;
-    max-width: 100%;
+
+.one-euro {
+    @extend .example-box;
+    background-color: rgb(224, 224, 20);
+}
+
+.two-euro {
+    @extend .example-box;
+    background: rgb(73, 181, 38);
+}
+
+.three-euro {
+    @extend .example-box;
+    background: rgb(37, 70, 204);
+}
+
+.tokens-div {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.profit-div {
+    margin-left: 100px;
+}
+
+.profits-card-content {
+    margin-top: 20px;
+    font-size: large;
+    font-weight: bold;
 }
