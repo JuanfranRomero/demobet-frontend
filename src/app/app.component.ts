@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoginDialog } from './dialogs/login-dialog/login-dialog.component';
+import { WalletDialog } from './dialogs/wallet-dialog/wallet-dialog.component';
 import { UserService } from './service/user.service';
 import { User } from './model/user.model';
 import { AuthenticationService } from './service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,10 @@ export class AppComponent implements OnInit {
   authenticatedUser: User | null;
 
   constructor(
-    public dialog: MatDialog,
-    public userService: UserService,
-    public authenticationService: AuthenticationService,
+    private dialog: MatDialog,
+    private userService: UserService,
+    private authenticationService: AuthenticationService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -26,17 +28,20 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public openLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(LoginDialog, {
+  public openDialog(isDeposit: boolean, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open(WalletDialog, {
       width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
+    
+    dialogRef.componentInstance.isDeposit = isDeposit;
   }
 
   public logout() {
     this.authenticationService.logout();
     this.userService.forgetAuthenticatedUser();
+    this.router.navigate(['/login']);
   }
 
 }

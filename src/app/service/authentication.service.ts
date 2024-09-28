@@ -11,7 +11,7 @@ import { LoginResponse } from '../model/login-response.model';
 export class AuthenticationService extends BaseService<LoginRequest, LoginResponse> {
 
   public login(loginRequest: LoginRequest): Observable<LoginResponse> {
-    return super.post('http://localhost:8080/auth/login', loginRequest);
+    return super.post('http://localhost:1000/auth/generate_token', loginRequest);
   }
 
   public logout(): void {

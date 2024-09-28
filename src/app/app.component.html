@@ -4,19 +4,32 @@
   </button>
   <span>Demobet Frontend</span>
   <span class="example-spacer"></span>
-  <button *ngIf="!authenticatedUser" mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="openLoginDialog('0ms', '0ms')">
-    Log in
+  <button *ngIf="authenticatedUser" [matMenuTriggerFor]="menu" mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    10.00€
+    <mat-icon>person</mat-icon>
   </button>
+  <mat-menu #menu="matMenu" xPosition="after" class="menu">
+    <span class="welcome-message">¡Bienvenido {{ authenticatedUser?.name }}!</span>
 
-  <span *ngIf="authenticatedUser">¡Bienvenido {{ authenticatedUser.name + ' ' + authenticatedUser.surname }}!</span>
-
-  <button *ngIf="authenticatedUser" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-
-  <button *ngIf="authenticatedUser" mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="logout()">
-    Log out
-  </button>
+    <div class="menu-options">
+      <button mat-menu-item (click)="openDialog(true, '0ms', '0ms')">
+        <mat-icon>attach_money</mat-icon>
+        <span>Deposit</span>
+      </button>
+      <button mat-menu-item (click)="openDialog(false, '0ms', '0ms')">
+        <mat-icon>money_off</mat-icon>
+        <span>Withdraw</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>delete_forever</mat-icon>
+        <span>Delete account</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Log out</span>
+      </button>
+    </div>
+  </mat-menu>
 
 </mat-toolbar>
 

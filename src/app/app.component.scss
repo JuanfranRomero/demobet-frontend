@@ -1,3 +1,17 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+::ng-deep .menu {
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.welcome-message {
+  padding: 20px;
+  font-size: large;
+}
+
+.menu-options {
+  margin-top: 20px;
+}

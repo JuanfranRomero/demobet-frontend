@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ isDeposit ? 'Deposit money' : 'Withdraw money' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="loginFormGroup" (submit)="submit()">
+    <p>
+      <mat-form-field floatLabel="always">
+        <mat-label>Amount to be {{ isDeposit ? 'deposited' : 'withdrawn' }}</mat-label>
+        <input matInput class="example-right-align" placeholder="0" formControlName="amount" />
+        <span matTextPrefix>$&nbsp;</span>
+        <span matTextSuffix>.00</span>
+      </mat-form-field>
+    </p>
+    <p class="submit-button-align">
+      <button mat-flat-button type="submit" [disabled]="loginFormGroup.invalid || loading" class="submit-button">
+          <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
+          <span *ngIf="!loading">{{ isDeposit ? 'Deposit' : 'Withdraw' }}</span>
+      </button>
+    </p>
+  </form>
+</mat-dialog-content>
