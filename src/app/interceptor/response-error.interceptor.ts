@@ -4,6 +4,8 @@ import { catchError, Observable, throwError } from "rxjs";
 import { SnackBarService } from "../service/snackbar.service";
 import { Router } from "@angular/router";
 
+const BAD_CREDENTIALS: string = 'Bad credentials';
+
 @Injectable()
 export class ResponseErrorInterceptor implements HttpInterceptor {
 
@@ -22,7 +24,9 @@ export class ResponseErrorInterceptor implements HttpInterceptor {
                 } else {
                     // backend error
                     if (error.status === 401) {
-                        errorMessage = `Inicio de sesión requerido`;
+                        console.log(error.error, error.description)
+                        errorMessage = error && error.error && error.error.detail === BAD_CREDENTIALS 
+                            ? `The username or password is incorrect` : `You are required to log in.`;
                         this.router.navigate(['/login']);
                         
                     } else if (error.status === 403) {

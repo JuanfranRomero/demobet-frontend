@@ -18,7 +18,7 @@ export class UserService extends BaseService<User, User> {
     }
 
     public authenticatedUser(): void {
-        super.get('http://localhost:8080/users/me').subscribe(response => {
+        super.get('http://localhost:1000/auth/me').subscribe(response => {
             this.user = response;
             this.userChange.next(this.user);
         });

@@ -7,7 +7,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = localStorage.getItem('access_token');
-    if (token && !request.url.includes('/auth')) {
+    if (token && !request.url.includes('/generate_token') && !request.url.includes('/signup')) {
       token = token.replace(/^"(.*)"$/, '$1');
       request = request.clone({
         setHeaders: {

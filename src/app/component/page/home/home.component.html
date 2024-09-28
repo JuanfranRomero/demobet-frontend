@@ -1,77 +1,695 @@
 <div class="roulette-main-div">
-    <div class="example-boundary">
+    <div cdkDropListGroup>
         <table>
             <tbody>
                 <tr>
-                    <td class="green " rowspan="3">0</td>
-                    <td class="red ">3</td>
-                    <td class="black ">6</td>
-                    <td class="red ">9</td>
-                    <td class="red ">12</td>
-                    <td class="black ">15</td>
-                    <td class="red ">18</td>
-                    <td class="red ">21</td>
-                    <td class="black ">24</td>
-                    <td class="red ">27</td>
-                    <td class="red ">30</td>
-                    <td class="black ">33</td>
-                    <td class="red ">36</td>
-                    <td class="green ">2-1</td>
+                    <td 
+                        rowspan="3"
+                        class="green" 
+                        cdkDropList
+                        [cdkDropListData]="zero"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of zero; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        0
+                    </td>
+
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="three"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of three; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        3
+                    </td>
+                        
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="six"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of six; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        6
+                    </td>
+
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="nine"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of nine; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        9
+                    </td>
+
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="twelve"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twelve; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        12
+                    </td>
+                                        
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="fiveteen"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of fiveteen; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        15
+                    </td>
+                                        
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="eighteen"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of eighteen; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        18
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="twentyOne"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentyOne; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        21
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="twentyFour"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentyFour; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        24
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="twentySeven"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentySeven; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        27
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="thirty"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirty; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        30
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="thirtyThree"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirtyThree; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        33
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="thirtySix"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirtySix; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        36
+                    </td>
+                    
+                    <td class="green">2-1</td>
                 </tr>
                 <tr>
-                    <td class="black ">2</td>
-                    <td class="red ">5</td>
-                    <td class="black ">8</td>
-                    <td class="black ">11</td>
-                    <td class="red ">14</td>
-                    <td class="black ">17</td>
-                    <td class="black ">20</td>
-                    <td class="red ">23</td>
-                    <td class="black ">26</td>
-                    <td class="black ">29</td>
-                    <td class="red ">32</td>
-                    <td class="black ">35</td>
-                    <td class="green ">2-1</td>
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="two"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of two; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        2
+                    </td>
+
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="five"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of five; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        5
+                    </td>
+
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="eight"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of eight; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        8
+                    </td>
+                                        
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="eleven"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of eleven; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        11
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="fourteen"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of fourteen; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        14
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="seventeen"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of seventeen; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        17
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="twenty"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twenty; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        20
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="twentyThree"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentyThree; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        23
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="twentySix"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentySix; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        26
+                    </td>
+                     
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="twentyNine"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentyNine; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        29
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="thirtyTwo"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirtyTwo; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        32
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="thirtyFive"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirtyFive; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        35
+                    </td>
+                    
+                    <td class="green">2-1</td>
                 </tr>
                 <tr>
-                    <td class="red ">1</td>
-                    <td class="black ">4</td>
-                    <td class="red ">7</td>
-                    <td class="black ">10</td>
-                    <td class="black ">13</td>
-                    <td class="red ">16</td>
-                    <td class="black ">19</td>
-                    <td class="black ">22</td>
-                    <td class="red ">25</td>
-                    <td class="red ">28</td>
-                    <td class="black ">31</td>
-                    <td class="red ">34</td>
-                    <td class="green ">2-1</td>
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="one"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of one; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        1
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="four"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of four; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        4
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="seven"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of seven; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        7
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="ten"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of ten; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        10
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="thirteen"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirteen; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        13
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="sixteen"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of sixteen; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        16
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="nineteen"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of nineteen; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        19
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="twentyTwo"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentyTwo; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        22
+                    </td>
+
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="twentyFive"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentyFive; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        25
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="twentyEight"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of twentyEight; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        28
+                    </td>
+                    
+                    <td 
+                        class="black"
+                        cdkDropList
+                        [cdkDropListData]="thirtyOne"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirtyOne; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        31
+                    </td>
+                    
+                    <td 
+                        class="red"
+                        cdkDropList
+                        [cdkDropListData]="thirtyFour"
+                        cdkDropListSortingDisabled
+                        (cdkDropListDropped)="drop($event)">
+                        @for (item of thirtyFour; track item) {
+                            <div [ngClass]="{ 
+                                'one-euro': item === '1€', 
+                                'two-euro': item === '2€', 
+                                'three-euro': item === '3€'
+                            }" 
+                            cdkDrag>{{item}}</div>
+                        }
+                        34
+                    </td>
+                    
+                    <td class="green">2-1</td>
                 </tr>
                 <tr>
                     <td class="white"></td>
-                    <td class="green " colspan="4">1st 12</td>
-                    <td class="green " colspan="4">2nd 12</td>
-                    <td class="green " colspan="4">3rd 12</td>
+                    <td class="green" colspan="4">1st 12</td>
+                    <td class="green" colspan="4">2nd 12</td>
+                    <td class="green" colspan="4">3rd 12</td>
                     <td class="white"></td>
                 </tr>
                 <tr>
                     <td class="white"></td>
-                    <td class="green " colspan="2">1-18</td>
-                    <td class="green " colspan="2">Even</td>
-                    <td class="red " colspan="2">red</td>
-                    <td class="black " colspan="2">black</td>
-                    <td class="green " colspan="2">Odd</td>
-                    <td class="green " colspan="2">19-36</td>
+                    <td class="green" colspan="2">1-18</td>
+                    <td class="green" colspan="2">Even</td>
+                    <td class="red" colspan="2">red</td>
+                    <td class="black" colspan="2">black</td>
+                    <td class="green" colspan="2">Odd</td>
+                    <td class="green" colspan="2">19-36</td>
                     <td class="white"></td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag (cdkDragEnded)="dragEnd($event)">
-            20 cts
+        <div 
+            class="tokens-div"
+            cdkDropList
+            [cdkDropListData]="tokens"
+            cdkDropListSortingDisabled
+            (cdkDropListDropped)="drop($event)">
+            @for (item of tokens; track item) {
+                <div [ngClass]="{ 
+                    'one-euro': item === '1€', 
+                    'two-euro': item === '2€', 
+                    'three-euro': item === '3€'
+                }" cdkDrag>{{item}}
+                </div>
+            }        
         </div>
+    </div>
 
+    <div class="profit-div">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title>Potential earnings 🤑</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="profits-card-content"> 
+              @for (item of profitsMap.keys(); track item) {
+                <p>{{item}} → {{profitsMap.get(item)}}€</p>
+            }
+            </mat-card-content>
+        </mat-card>
     </div>
 
 </div>

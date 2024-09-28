@@ -55,12 +55,16 @@ mat-form-field {
 
 // SnackBar
 .error-snackbar {
-    background-color: fuchsia !important;
+    --mdc-snackbar-container-color: #cc3300;  
+    --mat-snack-bar-button-color: white;
 }
 
-.mat-mdc-snack-bar-container {
-    &.success-dialog-snackbar {
-      --mdc-snackbar-container-color: #2196f3;
-      --mat-mdc-snack-bar-button-color: #fff;
-      --mdc-snackbar-supporting-text-color: #fff;
-    }}
+.success-snackbar {
+    --mdc-snackbar-container-color: #339900;  
+    --mat-snack-bar-button-color: white;
+}
+
+.warning-snackbar {
+    --mdc-snackbar-container-color: #ffcc00;  
+    --mat-snack-bar-button-color: white;
+}

@@ -25,7 +25,7 @@
                 </p>
 
                 <p class="login-button-align">
-                    <button mat-flat-button type="submit" [disabled]="loading" class="login-button">
+                    <button mat-flat-button type="submit" [disabled]="loginFormGroup.invalid || loading" class="login-button">
                         <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
                         <span *ngIf="!loading">Log in</span>
                     </button>

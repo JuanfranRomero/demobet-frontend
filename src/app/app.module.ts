@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { LoginDialog } from './dialogs/login-dialog/login-dialog.component';
+import { WalletDialog } from './dialogs/wallet-dialog/wallet-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -25,11 +25,12 @@ import { LoginComponent } from './component/page/login/login.component';
 import { SignupComponent } from './component/page/signup/signup.component';
 import { HomeComponent } from './component/page/home/home.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginDialog,
+    WalletDialog,
     LoginComponent,
     SignupComponent,
     HomeComponent
@@ -52,7 +53,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatCardModule,
     // Grid
     MatGridListModule,
+    // Drag and drop
     DragDropModule,
+    // Menu
+    MatMenuModule,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
