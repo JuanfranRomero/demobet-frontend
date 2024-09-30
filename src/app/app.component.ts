@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { WalletDialog } from './dialogs/wallet-dialog/wallet-dialog.component';
 import { UserService } from './service/user.service';
 import { User } from './model/user.model';
 import { AuthenticationService } from './service/authentication.service';
 import { Router } from '@angular/router';
+import { WalletService } from './service/wallet.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,12 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   authenticatedUser: User | null;
+  currentAmount: number;
 
   constructor(
     private dialog: MatDialog,
     private userService: UserService,
+    private walletService: WalletService,
     private authenticationService: AuthenticationService,
     private router: Router,
   ) {}
@@ -25,6 +28,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.userService.userChange.subscribe((user: User | null) => {
       this.authenticatedUser = user;
+      this.walletService.getAmount(user!.id);
+    });
+    this.walletService.currentAmountChange.subscribe((amount: number) => {
+      this.currentAmount = amount;
     });
   }
 
@@ -36,6 +43,7 @@ export class AppComponent implements OnInit {
     });
     
     dialogRef.componentInstance.isDeposit = isDeposit;
+    dialogRef.componentInstance.user = this.authenticatedUser;
   }
 
   public logout() {

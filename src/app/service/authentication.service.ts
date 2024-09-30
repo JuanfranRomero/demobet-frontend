@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { User } from '../model/user.model';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
-import { LoginRequest } from '../model/login-request.model';
-import { LoginResponse } from '../model/login-response.model';
+import { LoginRequest } from '../model/request/login-request.model';
+import { LoginResponse } from '../model/response/login-response.model';
 
 @Injectable({
   providedIn: 'root'

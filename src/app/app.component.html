@@ -5,7 +5,7 @@
   <span>Demobet Frontend</span>
   <span class="example-spacer"></span>
   <button *ngIf="authenticatedUser" [matMenuTriggerFor]="menu" mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    10.00€
+    {{ currentAmount }}.00€
     <mat-icon>person</mat-icon>
   </button>
   <mat-menu #menu="matMenu" xPosition="after" class="menu">

@@ -10,7 +10,7 @@
       </mat-form-field>
     </p>
     <p class="submit-button-align">
-      <button mat-flat-button type="submit" [disabled]="loginFormGroup.invalid || loading" class="submit-button">
+      <button mat-flat-button mat-dialog-close type="submit" [disabled]="loginFormGroup.invalid || loading" class="submit-button">
           <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
           <span *ngIf="!loading">{{ isDeposit ? 'Deposit' : 'Withdraw' }}</span>
       </button>

@@ -26,6 +26,7 @@ import { SignupComponent } from './component/page/signup/signup.component';
 import { HomeComponent } from './component/page/home/home.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
+import { WalletService } from './service/wallet.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import { MatMenuModule } from '@angular/material/menu';
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(), 
     // Services
-    AuthenticationService, UserService, SnackBarService,
+    AuthenticationService, UserService, SnackBarService, WalletService,
     // JWT Interceptor
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     // Response Error Interceptor

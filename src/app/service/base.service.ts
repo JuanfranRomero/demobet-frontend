@@ -18,4 +18,8 @@ export class BaseService<Request, Response> {
     return this.http.post<Response>(url, body);
   }
 
+  put(url: string, body: Request): Observable<Response>  {
+    return this.http.put<Response>(url, body);
+  }
+
 }
