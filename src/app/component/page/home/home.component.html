@@ -679,12 +679,35 @@
         </div>
     </div>
 
-    <div class="profit-div">
+    <div class="info-div">
+
+        <mat-card appearance="outlined" class="info-card">
+            <mat-card-header>
+                <mat-card-title>The ball has landed in ... 🍀​</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="info-card-content chosen-number"> 
+                {{ chosenNumber }}
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card appearance="outlined" class="info-card">
+            <mat-card-header>
+                <mat-card-title>Next round in ... ⏳​</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="info-card-content"> 
+                <mat-progress-bar
+                    class="example-margin"
+                    [mode]="mode"
+                    [value]="value">
+                </mat-progress-bar>
+            </mat-card-content>
+        </mat-card>
+
         <mat-card appearance="outlined">
             <mat-card-header>
                 <mat-card-title>Potential earnings 🤑</mat-card-title>
             </mat-card-header>
-            <mat-card-content class="profits-card-content"> 
+            <mat-card-content class="info-card-content"> 
               @for (item of profitsMap.keys(); track item) {
                 <p>{{item}} → {{profitsMap.get(item)}}€</p>
             }

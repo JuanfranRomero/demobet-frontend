@@ -27,6 +27,7 @@ import { HomeComponent } from './component/page/home/home.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
 import { WalletService } from './service/wallet.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,8 @@ import { WalletService } from './service/wallet.service';
     DragDropModule,
     // Menu
     MatMenuModule,
+    // Progress bar
+    MatProgressBarModule,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
