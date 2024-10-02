@@ -86,12 +86,21 @@ th {
     justify-content: space-around;
 }
 
-.profit-div {
+.info-div {
     margin-left: 100px;
 }
 
-.profits-card-content {
+.info-card {
+    margin-bottom: 30px;
+}
+
+.info-card-content {
+    text-align: center;
     margin-top: 20px;
     font-size: large;
     font-weight: bold;
+}
+
+.chosen-number {
+    font-size: x-large;
 }

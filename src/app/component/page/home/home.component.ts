@@ -1,12 +1,19 @@
 import { CdkDragDrop, CdkDragEnd, moveItemInArray, Point, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProgressBarMode } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  mode: ProgressBarMode = 'determinate';
+  value = 0;
+
+  chosenNumber: number;
+  nextRound: boolean = true;
 
   // Bet
   profitsMap: Map<string | undefined | null, number> = new Map();
@@ -53,6 +60,10 @@ export class HomeComponent {
   thirtyFive: string[] = [];
   thirtySix: string[] = [];
 
+  ngOnInit(): void {
+    this.increaseProgressBar();
+  }
+
   public drop(event: CdkDragDrop<string[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -79,6 +90,35 @@ export class HomeComponent {
     }
 
     console.log(this.profitsMap)
+  }
+
+  private increaseProgressBar(): void {
+    setInterval(() => {
+      if (this.nextRound) {
+        this.value += 10;
+        if (this.value === 100) {
+          this.generateNumber();
+        } else if (this.value === 120) {
+          this.value = 0;
+          console.log("Enviamos data al back");
+        }
+      }
+    }, 1000);
+  }
+
+  private generateNumber(): void {
+    this.nextRound = false;
+    for (let i = 0; i < 10000; i++) {
+      setTimeout(() => {
+        this.chosenNumber = this.getRandomInt(37);
+      }, 1000);
+    }
+    this.nextRound = true;
+
+  }
+
+  private getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
   }
 
 }
