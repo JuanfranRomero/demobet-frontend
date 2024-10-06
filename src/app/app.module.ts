@@ -28,6 +28,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
 import { WalletService } from './service/wallet.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { BetService } from './service/bet.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(), 
     // Services
-    AuthenticationService, UserService, SnackBarService, WalletService,
+    AuthenticationService, UserService, SnackBarService, WalletService, BetService,
     // JWT Interceptor
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     // Response Error Interceptor

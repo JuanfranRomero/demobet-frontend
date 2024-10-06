@@ -1,6 +1,16 @@
 import { CdkDragDrop, CdkDragEnd, moveItemInArray, Point, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ProgressBarMode } from '@angular/material/progress-bar';
+import { BetService } from '../../../service/bet.service';
+import { BetRequest } from '../../../model/request/bet-request.model';
+import { UserService } from '../../../service/user.service';
+import { WalletService } from '../../../service/wallet.service';
+import { concatMap, filter, pluck, switchMap } from 'rxjs';
+
+interface InformationPanel {
+  message: string;
+  color: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -9,19 +19,30 @@ import { ProgressBarMode } from '@angular/material/progress-bar';
 })
 export class HomeComponent implements OnInit {
 
-  mode: ProgressBarMode = 'determinate';
-  value = 0;
+  constructor(
+    private betService: BetService,
+    private userService: UserService,
+    private walletService: WalletService,
+  ) {}
 
-  chosenNumber: number;
+  modeProgressBar: ProgressBarMode = 'determinate';
+  valueProgressBar = 0;
+
+  rouletteNumber: number;
   nextRound: boolean = true;
 
+  informationPanel: InformationPanel = {
+    message: `Enter your next bet`,
+    color: `black`
+  };
+
   // Bet
-  profitsMap: Map<string | undefined | null, number> = new Map();
+  betMap: Map<string, number> = new Map();
 
   // Token
   tokens: string[] = ['1€', '1€', '1€', '1€', '2€', '2€', '2€', '2€', '3€', '3€', '3€', '3€'];
 
-  // Number lists
+  // Box lists
   zero: string[] = [];
   one: string[] = [];
   two: string[] = [];
@@ -59,6 +80,18 @@ export class HomeComponent implements OnInit {
   thirtyFour: string[] = [];
   thirtyFive: string[] = [];
   thirtySix: string[] = [];
+  red: string[] = [];
+  black: string[] = [];
+  firstColumn: string[] = [];
+  secondColumn: string[] = [];
+  thirdColumn: string[] = [];
+  firstRow: string[] = [];
+  secondRow: string[] = [];
+  thirdRow: string[] = [];
+  firstHalf: string[] = [];
+  secondHalf: string[] = [];
+  even: string[] = [];
+  odd: string[] = [];
 
   ngOnInit(): void {
     this.increaseProgressBar();
@@ -81,28 +114,58 @@ export class HomeComponent implements OnInit {
 
   private updateProfit(event: CdkDragDrop<string[]>): void {
     let amountToken = event.item.element.nativeElement.lastChild?.textContent?.substring(0, 1);
-    let cellChoosen = event.container.element.nativeElement.lastChild?.textContent;
+    let cellChoosen = event.container.element.nativeElement.lastChild?.textContent?.trim();
 
-    if (this.profitsMap.get(cellChoosen)) {
-      this.profitsMap.set(cellChoosen, this.profitsMap.get(cellChoosen)! + 36 * Number(amountToken));
+    if (this.betMap.get(cellChoosen!)) {
+      this.betMap.set(cellChoosen!, this.betMap.get(cellChoosen!)! + Number(amountToken));
     } else {
-      this.profitsMap.set(cellChoosen, 36 * Number(amountToken));
+      this.betMap.set(cellChoosen!, Number(amountToken));
     }
-
-    console.log(this.profitsMap)
   }
 
   private increaseProgressBar(): void {
     setInterval(() => {
+
       if (this.nextRound) {
-        this.value += 10;
-        if (this.value === 100) {
+        this.valueProgressBar += 10;
+        if (this.valueProgressBar === 100) {
           this.generateNumber();
-        } else if (this.value === 120) {
-          this.value = 0;
-          console.log("Enviamos data al back");
+          this.informationPanel = {
+            message: `No more!`,
+            color: `blue`
+          };
+
+        } else if (this.valueProgressBar === 120) {
+          this.nextRound = false;
+          this.valueProgressBar = 0;
+          
+          let betRequest: BetRequest = this.buildBetRequest();
+          this.betService.bet(betRequest).pipe(
+            switchMap(response => {
+              this.walletService.setCurrentAmount(response.amount);
+              return this.betService.checkProfit(this.userService.user!.id, response.gameId);
+            }),
+          ).subscribe(response => {
+              this.rouletteNumber = response.rouletteNumber;
+              if (response.profit > 0) {
+                this.walletService.setCurrentAmount(response.amount);
+                this.informationPanel = {
+                  message: `Congratulations! You have earned a profit of ${response.profit}.00 €`,
+                  color: `green`
+                };
+              } else {
+                this.informationPanel = {
+                  message: `We are sorry! You have not won anything with any of your bets.`,
+                  color: `red`
+                };
+              }
+              this.clean();
+              this.nextRound = true;
+            }
+          );
         }
       }
+    
     }, 1000);
   }
 
@@ -110,15 +173,79 @@ export class HomeComponent implements OnInit {
     this.nextRound = false;
     for (let i = 0; i < 10000; i++) {
       setTimeout(() => {
-        this.chosenNumber = this.getRandomInt(37);
+        this.rouletteNumber = Math.floor(Math.random() * 37);
       }, 1000);
     }
     this.nextRound = true;
 
   }
 
-  private getRandomInt(max: number) {
-    return Math.floor(Math.random() * max);
+  private buildBetRequest(): BetRequest {
+    let betsArray: {[key: string]: number} = {};
+      this.betMap.forEach((val: number, key: string) => {
+        betsArray[key] = val;
+    });
+
+    return {
+      userId: this.userService.user!.id,
+      bets: betsArray
+    }
+  }
+
+  private clean(): void {
+    this.betMap = new Map();
+    
+    this.tokens = ['1€', '1€', '1€', '1€', '2€', '2€', '2€', '2€', '3€', '3€', '3€', '3€'];
+  
+    this.zero = [];
+    this.one = [];
+    this.two = [];
+    this.three = [];
+    this.four = [];
+    this.five = [];
+    this.six = [];
+    this.seven = [];
+    this.eight = [];
+    this.nine = [];
+    this.ten = [];
+    this.eleven = [];
+    this.twelve = [];
+    this.thirteen = [];
+    this.fourteen = [];
+    this.fiveteen = [];
+    this.sixteen = [];
+    this.seventeen = [];
+    this.eighteen = [];
+    this.nineteen = [];
+    this.twenty = [];
+    this.twentyOne = [];
+    this.twentyTwo = [];
+    this.twentyThree = [];
+    this.twentyFour = [];
+    this.twentyFive = [];
+    this.twentySix = [];
+    this.twentySeven = [];
+    this.twentyEight = [];
+    this.twentyNine = [];
+    this.thirty = [];
+    this.thirtyOne = [];
+    this.thirtyTwo = [];
+    this.thirtyThree = [];
+    this.thirtyFour = [];
+    this.thirtyFive = [];
+    this.thirtySix = [];
+    this.red = [];
+    this.black = [];
+    this.firstColumn = [];
+    this.secondColumn = [];
+    this.thirdColumn = [];
+    this.firstRow = [];
+    this.secondRow = [];
+    this.thirdRow = [];
+    this.firstHalf = [];
+    this.secondHalf = [];
+    this.even = [];
+    this.odd = [];
   }
 
 }
