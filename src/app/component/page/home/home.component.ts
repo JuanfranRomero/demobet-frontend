@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     private betService: BetService,
     private userService: UserService,
     private walletService: WalletService,
-  ) {}
+  ) { }
 
   modeProgressBar: ProgressBarMode = 'determinate';
   valueProgressBar = 0;
@@ -125,7 +125,6 @@ export class HomeComponent implements OnInit {
 
   private increaseProgressBar(): void {
     setInterval(() => {
-
       if (this.nextRound) {
         this.valueProgressBar += 10;
         if (this.valueProgressBar === 100) {
@@ -134,38 +133,20 @@ export class HomeComponent implements OnInit {
             message: `No more!`,
             color: `blue`
           };
-
         } else if (this.valueProgressBar === 120) {
           this.nextRound = false;
           this.valueProgressBar = 0;
-          
-          let betRequest: BetRequest = this.buildBetRequest();
-          this.betService.bet(betRequest).pipe(
-            switchMap(response => {
-              this.walletService.setCurrentAmount(response.amount);
-              return this.betService.checkProfit(this.userService.user!.id, response.gameId);
-            }),
-          ).subscribe(response => {
-              this.rouletteNumber = response.rouletteNumber;
-              if (response.profit > 0) {
-                this.walletService.setCurrentAmount(response.amount);
-                this.informationPanel = {
-                  message: `Congratulations! You have earned a profit of ${response.profit}.00 €`,
-                  color: `green`
-                };
-              } else {
-                this.informationPanel = {
-                  message: `We are sorry! You have not won anything with any of your bets.`,
-                  color: `red`
-                };
-              }
-              this.clean();
-              this.nextRound = true;
-            }
-          );
+          if (!this.betMap.size) {
+            this.nextRound = true;
+            this.informationPanel = {
+              message: `You did not participate in the previous game.`,
+              color: `black`
+            };
+          } else {
+            this.betAndCheckProfit();
+          }
         }
       }
-    
     }, 1000);
   }
 
@@ -180,12 +161,37 @@ export class HomeComponent implements OnInit {
 
   }
 
-  private buildBetRequest(): BetRequest {
-    let betsArray: {[key: string]: number} = {};
-      this.betMap.forEach((val: number, key: string) => {
-        betsArray[key] = val;
+  private betAndCheckProfit(): void {
+    let betRequest: BetRequest = this.buildBetRequest();
+    this.betService.bet(betRequest).pipe(
+      switchMap(response => {
+        this.walletService.setCurrentAmount(response.amount);
+        return this.betService.checkProfit(this.userService.user!.id, response.gameId);
+      }),
+    ).subscribe(response => {
+      this.rouletteNumber = response.rouletteNumber;
+      if (response.profit > 0) {
+        this.walletService.setCurrentAmount(response.amount);
+        this.informationPanel = {
+          message: `Congratulations! You have earned a profit of ${response.profit}.00 €`,
+          color: `green`
+        };
+      } else {
+        this.informationPanel = {
+          message: `We are sorry! You have not won anything with any of your bets.`,
+          color: `red`
+        };
+      }
+      this.clean();
+      this.nextRound = true;
     });
+  }
 
+  private buildBetRequest(): BetRequest {
+    let betsArray: { [key: string]: number } = {};
+    this.betMap.forEach((val: number, key: string) => {
+      betsArray[key] = val;
+    });
     return {
       userId: this.userService.user!.id,
       bets: betsArray
@@ -194,9 +200,9 @@ export class HomeComponent implements OnInit {
 
   private clean(): void {
     this.betMap = new Map();
-    
+
     this.tokens = ['1€', '1€', '1€', '1€', '2€', '2€', '2€', '2€', '3€', '3€', '3€', '3€'];
-  
+
     this.zero = [];
     this.one = [];
     this.two = [];
